@@ -152,7 +152,7 @@
   const hiddenInput = document.getElementById("hiddenInput");
 
   const audio = document.getElementById("audio");
-
+  const STATIC_BASE = "{{ url_for('static', filename='') }}";
   document.getElementById("btnReset").addEventListener("click", async () => {
   const ok = confirm("确定要清空所有关卡成绩吗？");
   if (!ok) return;
@@ -179,7 +179,7 @@ function setAudio(path) {
   if (!path) return;
 
   const src = document.createElement("source");
-  src.src = "/static/" + path;   // DB: audio/l1.mp3 -> /static/audio/l1.mp3
+  src.src = STATIC_BASE + path;// DB: audio/l1.mp3 -> /static/audio/l1.mp3
   src.type = "audio/mpeg";
 
   audio.appendChild(src);
