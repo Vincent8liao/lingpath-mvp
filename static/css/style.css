@@ -1,0 +1,284 @@
+/* =========================
+   LingPath MVP UI Polish
+   - clean cards
+   - better typography
+   - nicer buttons
+   - subtle shadows
+   - dark mode friendly
+   ========================= */
+
+:root{
+  --bg: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+
+  --card: rgba(255,255,255,0.85);
+  --shadow: 0 10px 30px rgba(0,0,0,0.06);
+
+  --primary: #111827;
+  --primary-soft: rgba(17,24,39,0.08);
+
+  --ok-bg: #ecfdf3;
+  --ok-bd: #a7f3d0;
+
+  --wrong-bg: #fff1f2;
+  --wrong-bd: #fecaca;
+
+  --miss-bg: #f3f4f6;
+  --miss-bd: #e5e7eb;
+
+  --extra-bg: #eff6ff;
+  --extra-bd: #bfdbfe;
+
+  --radius: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root{
+    --bg: #0b1220;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --border: rgba(255,255,255,0.10);
+    --border-strong: rgba(255,255,255,0.18);
+    --card: rgba(17,24,39,0.55);
+    --shadow: 0 14px 40px rgba(0,0,0,0.35);
+
+    --primary: #f9fafb;
+    --primary-soft: rgba(249,250,251,0.10);
+
+    --ok-bg: rgba(16,185,129,0.12);
+    --ok-bd: rgba(16,185,129,0.35);
+
+    --wrong-bg: rgba(244,63,94,0.12);
+    --wrong-bd: rgba(244,63,94,0.35);
+
+    --miss-bg: rgba(156,163,175,0.10);
+    --miss-bd: rgba(156,163,175,0.22);
+
+    --extra-bg: rgba(59,130,246,0.12);
+    --extra-bd: rgba(59,130,246,0.35);
+  }
+}
+
+/* Base layout */
+* { box-sizing: border-box; }
+
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 0 16px;
+  color: var(--text);
+  background:
+    radial-gradient(900px 420px at 15% -10%, rgba(59,130,246,0.12), transparent 60%),
+    radial-gradient(900px 420px at 90% 0%, rgba(16,185,129,0.10), transparent 60%),
+    var(--bg);
+}
+
+h1{
+  font-size: 26px;
+  margin: 8px 0 16px;
+  letter-spacing: -0.02em;
+}
+
+h3{
+  margin: 0 0 10px;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+/* Cards */
+.card{
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin: 14px 0;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.row{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Text helpers */
+.muted{ color: var(--muted); }
+.small{ font-size: 13px; line-height: 1.55; }
+
+/* Controls */
+button, select{
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border-strong);
+  background: rgba(255,255,255,0.65);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform .06s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  button, select{
+    background: rgba(17,24,39,0.55);
+  }
+}
+
+button:hover, select:hover{
+  border-color: rgba(59,130,246,0.55);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+button:active{
+  transform: translateY(1px);
+}
+
+button:focus, select:focus, .grid:focus{
+  outline: 3px solid rgba(59,130,246,0.35);
+  outline-offset: 2px;
+}
+
+/* Optional: make "danger" buttons look consistent */
+button[style*="ffecec"]{
+  background: rgba(244,63,94,0.10) !important;
+  border-color: rgba(244,63,94,0.25) !important;
+}
+button[style*="ffecec"]:hover{
+  border-color: rgba(244,63,94,0.45) !important;
+}
+
+/* Badges */
+.badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.40);
+}
+
+.ok{ background: var(--ok-bg); border-color: var(--ok-bd); }
+.wrong{ background: var(--wrong-bg); border-color: var(--wrong-bd); }
+.miss{ background: var(--miss-bg); border-color: var(--miss-bd); }
+.extra{ background: var(--extra-bg); border-color: var(--extra-bd); }
+
+/* Letter grid */
+.grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 7px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  min-height: 72px;
+  cursor: text;
+  user-select: none;
+  background: rgba(255,255,255,0.55);
+}
+
+@media (prefers-color-scheme: dark) {
+  .grid{ background: rgba(17,24,39,0.45); }
+}
+
+.cell{
+  width: 30px;
+  height: 36px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 16px;
+  background: rgba(255,255,255,0.6);
+  transition: transform .08s ease, border-color .2s ease, background .2s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .cell{ background: rgba(17,24,39,0.55); }
+}
+
+.cell.empty{ color: rgba(107,114,128,0.9); }
+.cell.space{
+  width: 12px;
+  border-color: transparent;
+  background: transparent;
+}
+.cell.punc{
+  border-color: rgba(229,231,235,0.65);
+  background: rgba(249,250,251,0.55);
+  color: rgba(107,114,128,0.95);
+  font-weight: 650;
+}
+
+@media (prefers-color-scheme: dark) {
+  .cell.punc{
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.12);
+    color: rgba(156,163,175,0.95);
+  }
+}
+
+/* Caret highlight */
+.cell.caret{
+  outline: 3px solid rgba(59,130,246,0.55);
+  outline-offset: 2px;
+  border-color: rgba(59,130,246,0.55);
+  transform: translateY(-1px);
+}
+
+/* Hidden input */
+.hidden-input{
+  position:absolute;
+  left:-9999px;
+  width:1px;
+  height:1px;
+  opacity:0;
+}
+
+/* Result tokens */
+.tokens{ line-height: 2.3; margin-top: 8px; }
+
+.tok{
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  display: inline-block;
+  margin: 2px 6px 2px 0;
+  background: rgba(255,255,255,0.45);
+}
+
+@media (prefers-color-scheme: dark) {
+  .tok{ background: rgba(17,24,39,0.45); }
+}
+
+.tok.ok{ border-color: var(--ok-bd); background: var(--ok-bg); }
+.tok.wrong{
+  border-color: var(--wrong-bd);
+  background: var(--wrong-bg);
+  text-decoration: underline wavy rgba(244,63,94,0.75);
+}
+.tok.missing{
+  border-color: var(--miss-bd);
+  background: var(--miss-bg);
+  opacity: 0.95;
+}
+.tok.extra{
+  border-color: var(--extra-bd);
+  background: var(--extra-bg);
+}
+
+/* Utility */
+.hidden{ display: none; }
+
+/* Mobile: slightly smaller cells */
+@media (max-width: 520px){
+  body{ margin: 18px auto; }
+  .cell{ width: 28px; height: 34px; border-radius: 9px; }
+  .grid{ gap: 6px; padding: 12px; }
+}
